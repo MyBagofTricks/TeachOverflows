@@ -25,12 +25,12 @@ int main(int argc, char *argv[])
 
 void feedMe(char *string)
 {
-	char buffer[16];
 	printf(string);
 	if(changeMe == 0xcafef00d)
 		winner();
 	else
 		printf("changeMe is: %d\n", changeMe);
+	return;
 }
 
 void winner() {

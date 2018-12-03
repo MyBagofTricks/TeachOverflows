@@ -21,7 +21,7 @@ Set permissions and run build script:
 
 Binaries will be compiled to "overflows/". Run each individually and have fun
 
-## THE GAME
+## The Game
 
 - stack00 - Enter a bunch of letters
 - stack01 - Enter the string at the correct offset

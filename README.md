@@ -1,6 +1,6 @@
 # TeachOverflows
 
-This is a collection of buffer overflow challenges intended to be used as a teaching resource. Compile as is or add your own custom flags using 'makeFlag.py', paste the result into the 'SECRET' field in the appropriate file .c file, build them, and have fun.
+This is a collection of buffer overflow challenges intended to demonstrate and teach the basic concepts. Compile as-is or add your own custom flags using 'makeFlag.py', paste the result into the 'SECRET' field in the appropriate .c file, build them, and have fun.
 
 These programs are intentionally vulnerable and should not be exposed directly to the internet unless the system is meant to be attacked.
 
@@ -72,7 +72,7 @@ To beat most of these challenges remotely, attackers will either need a copy of 
 ## Your "encryption" is bad!
 It's only designed to be more effort to reverse than complete the challenge, assuming you include source code. 
 
-## Recommended Reading 
+## Recommended Reading and Acknowledgements
 **The Shellcoder's Handbook: Discovering and Exploiting Security Holes**
 
 ISBN-10: 9780470080238 //ISBN-13: 978-0470080238
@@ -85,3 +85,6 @@ Sam's CNIT127 covers the basics well, with hours of videos and projects, all fre
 
 [Smashing The Stack For Fun And Profit](http://www-inst.eecs.berkeley.edu/~cs161/fa08/papers/stack_smashing.pdf) When Prometheus gave fire to humanity
 
+
+[Protostar CTF](https://www.vulnhub.com/entry/exploit-exercises-protostar-v2,32/)
+The basic progression of challenges were inspired by Protostar, and it remains a solid tool for learning overflows with a limited toolset.

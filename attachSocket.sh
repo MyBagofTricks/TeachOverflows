@@ -1,14 +1,15 @@
 #!/bin/bash
 
-ROPSTART=3030
+ROPSTART=3050
 STACKSTART=3010
+FORMATSTART=3030
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 
 echo "WARNING: This program attaches intentionally vulnerable programs"
 echo "to sockets, making them accessible to other computers with access"
 echo "to your network"
 
-for i in $(find overflows/ | sort); do
+for i in $(find bin/ | sort); do
 	FNAME=$(basename -- "$i")
 	if [[ "$FNAME" =~ "stack" ]]; then
 		PORT=$STACKSTART
@@ -16,11 +17,14 @@ for i in $(find overflows/ | sort); do
 	elif [[ $FNAME  =~ "rop" ]]; then
 		PORT=$ROPSTART
 		let "ROPSTART=ROPSTART+1"
+	elif [[ $FNAME  =~ "format" ]]; then
+		PORT=$FORMATSTART
+		let "FORMATSTART=FORMATSTART+1"
 	else
 		continue
 	fi
 	printf "Attaching %s to port %i\n" $FNAME $PORT
-	socat TCP-LISTEN:$PORT.reuseaddr,fork EXEC:./overflows/$FNAME & 
+	socat TCP-LISTEN:$PORT.reuseaddr,fork EXEC:./bin/$FNAME & 
 	PIDS+=($!)
 done
 printf "Processes connected!\n"

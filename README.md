@@ -21,15 +21,28 @@ Set permissions and run build script:
 
 Binaries will be compiled to "overflows/". Run each individually and have fun
 
+# THE GAME
+
+- stack00 - Enter a bunch of letters
+- stack01 - Enter the string at the correct offset
+- stack02 - Enter the strings at the correct offsets
+
+- stack10 - Same as stack01, but also overwrite the buffer to change the value of the 'changMe' variable
+- stack11 - Overflow the buffer and call the 'winner' function
+- stack12 - Same as stack11 but with one tiny restriction
+
+- format10 - Overwrite the value of 'changeMe' with 0xCAFEF00D. Payload must be less than 10 chars long (Hint: use printf padding!)
+
+- rop10 - Call the 'winner' function with the correct argument
+- rop11 - Call 'feedMe2' with the correct arguments, then call 'winner'
+
 ## Notes
 
 These programs are broken up into tiers:
 
 - T0 (stack0x): No actual overflows, just easy practices programs
 - T1 (stack1x): Simple overflows with stack protectors turned off
-- T2 (stack2x): Buffer overflows with shellcode (WIP)
-
-So far there are standard stack overflow and return orientated programming challenges. Format string vulnerabilities and more rops will be added shortly.
+- T2 (stack2x): Buffer overflows with shellcode (Coming Soon!)
 
 If compiling manually with gcc, use '-fno-stack-protector -no-pie' for tier 1+
 

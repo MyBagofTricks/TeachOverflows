@@ -25,18 +25,17 @@ int main(int argc, char *argv[])
 
 void feedMe(char *c)
 {
-	volatile int (*fp)();
+	volatile int (*changeMe)() = 0;
 	char buffer[100];
 	char *food = "DEADBEEF";
         char buf[9] = "\0";
-	fp = 0;
         strncpy(buf, c+(64*sizeof(char)), sizeof(buf)-1);
         if (strcmp(buf, food)) {
 		printf("Sorry, %s doesn't taste like %s.\n", buf, food);
 		exit(0);
 	} else {
 		strcpy(buffer, c);
-		if (fp) {
+		if (changeMe) {
 			winner();
 			exit(0);
 		} else {

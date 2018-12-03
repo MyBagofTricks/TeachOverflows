@@ -18,7 +18,7 @@ done
 for i in $(find -name "*1?.c"); do
 	fname=$(basename -- "$i")
 	fname="${fname%.*}"
-	gcc "$i" -o ${DEST}/bin/${fname} -fno-stack-protector -no-pie -m32
+	gcc "$i" -o ${DEST}/bin/${fname} -fno-stack-protector -no-pie -m32 -Wall -Wformat=0
 done
 
 

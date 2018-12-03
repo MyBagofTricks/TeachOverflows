@@ -31,6 +31,7 @@ Binaries will be compiled to "bin/". Run each individually and have fun
 - stack12 - Same as stack11 but with one tiny restriction
 - format10 - Overwrite the value of 'changeMe' with 0xCAFEF00D. Payload must be less than 10 chars long (Hint: use printf padding!)
 - format11 - Overwrite the value of 'changeMe' with 512
+- format12 - Overwrite the value of 'changeMe' with 0xCAFEF00D
 - rop10 - Call the 'winner' function with the correct argument
 - rop11 - Call 'feedMe2' with the correct arguments, then call 'winner'
 

@@ -11,7 +11,7 @@ void mathIsHard(char *c);
 
 int main(int argc, char *argv[])
 {
-	char buffer[100];
+	char buffer[10];
 	printf("Welcome to %s\n\nFeed Me\n", argv[0]);
 	fflush(stdout);
 	fgets(buffer, sizeof(buffer), stdin);

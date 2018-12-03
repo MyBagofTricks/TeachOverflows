@@ -52,21 +52,21 @@ Disable Address Space Layout Randomization to simplify these challenges. Do so b
 ## Running on a socket
 
 You can wrap each program in a socket using netcat. nc doesn't seem to play nice, but the ncat which comes with nmap seems fine. 
-
-`ncat -e ./stack1 -lvknp 9999`
+```
+ncat -e ./stack1 -lvknp 9999`
 
     - -e <script>: execute script
     - -lvknp 9999: listen, verbose, keep open (multi handler), nodns, port <9999>
-
+```
 Note: Netcat has some quirks where it may close the in/out pipe before the program closes. Using socat when hosting the files instead of metcat mitigates this issue. You can also see cheatsheet.txt for another workaround.
-
-`socat TCP-LISTEN:3000.reuseaddr,fork EXEC:./stack01`
+```
+socat TCP-LISTEN:3000.reuseaddr,fork EXEC:./stack01`
 
     - TCP-LISTEN:<port>: port to listen on
     - reuseaddr: bind to a port even if it is being partially used
     - fork: fork the connection. Similar effect to -k in ncat
     - EXEC:<./program>: Program to execute
-
+```
 To beat most of these challenges remotely, attackers will either need a copy of the binaries, or the source and the specifics of the disto used when compiling for the server, so the attacker can compile their own.
 
 ## Your "encryption" is bad!
@@ -79,12 +79,12 @@ ISBN-10: 9780470080238 //ISBN-13: 978-0470080238
 
 
 [Sam Bowne's CNIT 127 Exploit Development Course](https://samsclass.info/) 
+- Sam's CNIT127 covers the basics well, with hours of videos and projects, all free! If CNIT127 isn't on his front page, check 'Old Classes'
 
-Sam's CNIT127 covers the basics well, with hours of videos and projects, all free! If CNIT127 isn't on his front page, check 'Old Classes'
 
-
-[Smashing The Stack For Fun And Profit](http://www-inst.eecs.berkeley.edu/~cs161/fa08/papers/stack_smashing.pdf) When Prometheus gave fire to humanity
+[Smashing The Stack For Fun And Profit](http://www-inst.eecs.berkeley.edu/~cs161/fa08/papers/stack_smashing.pdf)
+- When Prometheus gave fire to humanity
 
 
 [Protostar CTF](https://www.vulnhub.com/entry/exploit-exercises-protostar-v2,32/)
-The basic progression of challenges were inspired by Protostar, and it remains a solid tool for learning overflows with a limited toolset.
+- The basic progression of challenges were inspired by Protostar, and it remains a solid tool for learning overflows with a limited toolset.

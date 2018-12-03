@@ -1,6 +1,6 @@
 # TeachOverflows
 
-This is a collection of buffer overflow challenges intended to be used as a teaching resource. Compile as is or add your own custom flags using 'makeFlag.py', and paste the result into the 'SECRET' field in the appropriate file .c file.
+This is a collection of buffer overflow challenges intended to be used as a teaching resource. Compile as is or add your own custom flags using 'makeFlag.py', paste the result into the 'SECRET' field in the appropriate file .c file, build them, and have fun.
 
 These programs are intentionally vulnerable and should not be exposed directly to the internet unless the system is meant to be attacked.
 
@@ -19,20 +19,18 @@ Set permissions and run build script:
 
 `$ cd TeachOverflows && chmod +x build.sh && ./build.sh`
 
-Binaries will be compiled to "overflows/". Run each individually and have fun
+Binaries will be compiled to "bin/". Run each individually and have fun
 
 ## The Game
 
 - stack00 - Enter a bunch of letters
 - stack01 - Enter the string at the correct offset
 - stack02 - Enter the strings at the correct offsets
-
 - stack10 - Same as stack01, but also overwrite the buffer to change the value of the 'changMe' variable
 - stack11 - Overflow the buffer and call the 'winner' function
 - stack12 - Same as stack11 but with one tiny restriction
-
 - format10 - Overwrite the value of 'changeMe' with 0xCAFEF00D. Payload must be less than 10 chars long (Hint: use printf padding!)
-
+- format11 - Overwrite the value of 'changeMe' with 512
 - rop10 - Call the 'winner' function with the correct argument
 - rop11 - Call 'feedMe2' with the correct arguments, then call 'winner'
 
@@ -46,7 +44,7 @@ These programs are broken up into tiers:
 
 If compiling manually with gcc, use '-fno-stack-protector -no-pie' for tier 1+
 
-Address Space Layout Randomization should be disabled for tier1+. Execute this command as root:
+Disable Address Space Layout Randomization to simplify these challenges. Do so by executing this command as root:
 
 `echo 0 > /proc/sys/kernel/randomize_va_space`
 
@@ -70,9 +68,7 @@ Note: Netcat has some quirks where it may close the in/out pipe before the progr
 
 To beat most of these challenges remotely, attackers will either need a copy of the binaries, or the source and the specifics of the disto used when compiling for the server, so the attacker can compile their own.
 
-
-
-## Your 'encryption' is bad!
+## Your "encryption" is bad!
 It's only designed to be more effort to reverse than complete the challenge, assuming you include source code. 
 
 ## Recommended Reading 

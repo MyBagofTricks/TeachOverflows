@@ -22,10 +22,11 @@ for i in $(find -name "*1?.c"); do
 done
 
 
-echo "Build complete!\n"	
-echo "Remember, these programs can be wrapped to a socket:"
-echo "  using netcat: $ ncat -e ./stack1 -lkvnp 9000"
-echo "  using socat:  $ socat TCP-LISTEN:9000.reuseaddr,fork EXEC:./stack01"
-echo "Attackers connect with netcat:"
-echo "  plain connect: ncat <ip address> 9000"
-echo """  pipe perl out: perl -e 'print "A"*1337 . "HAX\n" | ncat <ip address> 9000"""
+printf "Build complete!\n"
+printf "Disregard any warnings, they're just a product of my bad c :)\n"
+printf "Remember, these programs can be wrapped to a socket:\n"
+printf "\tusing netcat: $ ncat -e ./stack1 -lkvnp 9000\n"
+printf "\tusing socat:  $ socat TCP-LISTEN:9000.reuseaddr,fork EXEC:./stack01\n"
+printf "Attackers connect with netcat:\n"
+printf "\tplain connect: ncat <ip address> 9000\n"
+printf "\tpipe perl out: perl -e 'print \"A\"*1337 .\"HAX\" | ncat <ip address> 9000\n"

@@ -32,6 +32,7 @@ Binaries will be compiled to "bin/". Run each individually and have fun
 - format10 - Overwrite the value of 'changeMe' with 0xCAFEF00D. Payload must be less than 10 chars long (Hint: use printf padding!)
 - format11 - Overwrite the value of 'changeMe' with 512
 - format12 - Overwrite the value of 'changeMe' with 0xCAFEF00D
+- heap11   - Heap overflow. Just like a buffer overflow
 - rop10 - Call the 'winner' function with the correct argument
 - rop11 - Call 'feedMe2' with the correct arguments, then call 'winner'
 

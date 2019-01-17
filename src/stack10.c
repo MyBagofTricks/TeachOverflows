@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include "magic.c"
 
 // replace the value for SECRET with the output from the python script
 char *SECRET = "\x1e\x42\x1e\x46\x5f\x1a\x4c\x1c\x4a\x57\x72\x1c\x4a\x72\x4b\x1d\x5a\x1e\x46\x59\x1a\x1c\x1d\x4a\x72\x1c\x4a\x5b\x1c\x43\x5a\x1c\x4a\x57\x72\x4b\x1d\x5a\x1e\x46\x59\x1a\x1c\x1d\x4a";
@@ -50,29 +51,3 @@ void winner(void)
 	exit(0);
 }
 
-void mathIsHard(char *secret)
-{
-        int i;
-        int key = strlen(secret);
-        char flag[255] = {0x20};
-        printf("\nYou win! Decrypting...\n");
-        for (i = 0; secret[i] != '\0'; i++) {
-                char ch;
-                ch = secret[i]  ^ key;
-                if (ch >= 97 && ch <= 122) {
-                        ch = ch - (key%26);
-                        if (ch < 97) 
-                                ch = ch + 122 - 97 + 1;
-                } else if (ch >= 65 && ch <= 90) {
-                        ch = ch - (key%26);
-                        if(ch < 65) 
-                                ch = ch + 90 - 65 + 1;
-                }
-                flag[i] = ch;
-                printf("\rFLAG{%s}", flag);
-                fflush(stdout);
-                usleep(100000);
-        }
-        printf("\n");
-        return;
-}

@@ -7,15 +7,8 @@ if !(which gcc > /dev/null); then
 fi
 
 mkdir -p ${DEST}/bin
-# Build level 0. No special requirements
-for i in $(find -name "*0?.c"); do	
-	fname=$(basename -- "$i")
-	fname="${fname%.*}"
-	gcc "$i" -o ${DEST}/bin/${fname} -m32
-done
-
 # Build level 1. Stack protections disabled
-for i in $(find -name "*1?.c"); do
+for i in $(find src/ -regex '.*[0-9]\.c'); do
 	fname=$(basename -- "$i")
 	fname="${fname%.*}"
 	gcc "$i" -o ${DEST}/bin/${fname} -fno-stack-protector -no-pie -m32 -Wall -Wformat=0

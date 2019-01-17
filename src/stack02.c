@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include "magic.c"
 
 char *SECRET = "\x58\x41\x1f\x1f\x1b\x4e\x77\x18\x42\x1b\x4e\x5c\x19\x18\x43\x4f\x77\x68\x4e\x5b\x77\x7c\x41\x6a\x77\x68\x4a\x5a\x77\x1b\x5a\x41\x59\x68\x40\x19\x18\x4a\x68\x52";
 
@@ -51,30 +52,3 @@ void winner(void)
 	return;
 }
 
-void mathIsHard(char *secret)
-{
-        int i;
-        int key = strlen(secret);
-        char flag[255] = {0x20};
-        printf("\nYou win! Decrypting...\n");
-        for (i = 0; secret[i] != '\0'; i++) {
-                char ch;
-                ch = secret[i]  ^ key;
-                if (ch >= 97 && ch <= 122) {
-                        ch = ch - (key%26);
-                        if (ch < 97)
-                                ch = ch + 122 - 97 + 1;
-                } else if (ch >= 65 && ch <= 90) {
-                        ch = ch - (key%26);
-                        if(ch < 65)
-                                ch = ch + 90 - 65 + 1;
-                }
-                flag[i] = ch;
-                printf("\rFLAG{%s}", flag);
-                fflush(stdout);
-                usleep(100000);
-        }
-        printf("\n");
-        fflush(stdout);
-        return;
-}

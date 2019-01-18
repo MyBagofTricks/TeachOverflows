@@ -7,11 +7,10 @@ trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 echo "WARNING: This program attaches intentionally vulnerable programs"
 echo "to sockets, making them accessible to other computers with access"
 echo "to your network"
-echo "<html>" > log.html
 
-echo "<div><table><tr><th>Program</th><th>Port</th></tr>" >> log.html
+declare -A programs
 for i in $(find src/ | sort); do
-	FNAME=$(basename -- "$i")
+	FNAME=$(basename -- "${i%.*}")
 	if [[ "$FNAME" =~ "stack" ]]; then
 		PORT=$STACKSTART
 		let "STACKSTART=STACKSTART+1"
@@ -22,18 +21,26 @@ for i in $(find src/ | sort); do
 		continue
 	fi
 	printf "Attaching %s to port %i\n" $FNAME $PORT
-	echo "<tr><th>${FNAME}</th><th>${PORT}</th></tr>" >> log.html
 	socat TCP-LISTEN:$PORT.reuseaddr,fork EXEC:./bin/$FNAME & 
+	programs+=(["$PORT"]="$FNAME")
 	PIDS+=($!)
 done
-echo "</tr></table></div>" >> log.html
 
-echo "<div>" >> log.html
-while read LINE; do
-	echo "<p>${LINE}</p>" >> log.html
-done < README.md
-echo "</div>" >> log.html
+echo "" > log.html
+echo "<html><div><code>" >> log.html
 
+CONTENT=$(grep Game README.md -A 16 | cut -d \| -f 2,3)
+echo "${CONTENT//$'\n'/<br />}" >> log.html
+echo "</div><br /><br />" >> log.html
+
+echo "port program<br />" >> log.html
+
+for port in "${!programs[@]}"; do
+	printf '%s:%s<br />\n' "$port" "${programs[$port]}"
+done | sort >> log.html
+
+
+echo "</codeL></div>" >> log.html
 echo "</html>" >> log.html
 printf "Processes connected!\n"
 

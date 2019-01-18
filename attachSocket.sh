@@ -45,7 +45,7 @@ echo "</html>" >> log.html
 printf "Processes connected!\n"
 
 if [ -d "www" ]; then
-	mv log.html app/www/index.html
+	mv /app/log.html /app/www/index.html
 fi
 
 while read -p "Press 'q' to quit, any other key to continue: " word; do

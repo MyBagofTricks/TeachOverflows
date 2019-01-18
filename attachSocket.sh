@@ -44,6 +44,10 @@ echo "</codeL></div>" >> log.html
 echo "</html>" >> log.html
 printf "Processes connected!\n"
 
+if [ -d "www" ]; then
+	mv log.html www/index.html
+fi
+
 while read -p "Press 'q' to quit, any other key to continue: " word; do
 	if [[ "$word" == 'q' ]]; then
 		echo "Terminating child processes..."

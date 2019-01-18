@@ -39,13 +39,13 @@ for port in "${!programs[@]}"; do
 	printf '%s:%s<br />\n' "$port" "${programs[$port]}"
 done | sort >> log.html
 
-
+echo "Binaries can be found in /bin.<br />" >> log.html
 echo "</codeL></div>" >> log.html
 echo "</html>" >> log.html
 printf "Processes connected!\n"
 
 if [ -d "www" ]; then
-	mv log.html www/index.html
+	mv log.html app/www/index.html
 fi
 
 while read -p "Press 'q' to quit, any other key to continue: " word; do

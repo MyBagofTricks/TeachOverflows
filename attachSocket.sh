@@ -39,7 +39,7 @@ for port in "${!programs[@]}"; do
 	printf '%s:%s<br />\n' "$port" "${programs[$port]}"
 done | sort >> log.html
 
-echo "Binaries can be found in /bin.<br />" >> log.html
+echo "<br /><b>Binaries can be found in /bin.</b><br />" >> log.html
 echo "</codeL></div>" >> log.html
 echo "</html>" >> log.html
 printf "Processes connected!\n"

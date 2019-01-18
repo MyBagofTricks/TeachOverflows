@@ -40,7 +40,7 @@ for port in "${!programs[@]}"; do
 done | sort >> log.html
 
 if [ -d "www" ]; then
-        echo "<br /><b>Binaries can be found in /bin.</b><br />" >> log.html
+        echo "<br /><b>Binaries can be found in /bin, source in /src.</b><br />" >> log.html
         echo "</code></div></html>" >> log.html
 	mv /app/log.html /app/www/README.html
 else

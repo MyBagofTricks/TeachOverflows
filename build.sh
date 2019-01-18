@@ -7,7 +7,6 @@ if !(which gcc > /dev/null); then
 fi
 
 mkdir -p ${DEST}/bin
-# Build level 1. Stack protections disabled
 for i in $(find src/ -regex '.*[0-9]\.c'); do
 	fname=$(basename -- "$i")
 	fname="${fname%.*}"
@@ -15,11 +14,10 @@ for i in $(find src/ -regex '.*[0-9]\.c'); do
 done
 
 
-printf "Build complete!\n"
-printf "Disregard any warnings, they're just a product of my bad c :)\n"
-printf "Remember, these programs can be wrapped to a socket:\n"
-printf "\tusing netcat: $ ncat -e ./stack1 -lkvnp 9000\n"
-printf "\tusing socat:  $ socat TCP-LISTEN:9000.reuseaddr,fork EXEC:./stack01\n"
-printf "Attackers connect with netcat:\n"
-printf "\tplain connect: ncat <ip address> 9000\n"
-printf "\tpipe perl out: perl -e 'print \"A\"*1337 .\"HAX\" | ncat <ip address> 9000\n"
+printf "[^] Build complete!\n"
+printf "[ ] Remember, these programs can be wrapped in a socket\n"
+printf "[!] netcat: $ ncat -e ./stack1 -lkvnp 9000\n"
+printf "[!] socat:  $ socat TCP-LISTEN:9000.reuseaddr,fork EXEC:./stack01\n"
+printf "[ ] Attackers connect with netcat:\n"
+printf "[ ] plain connect: ncat <ip address> 9000\n"
+printf "[ ] pipe perl out: perl -e 'print \"A\"*1337 .\"HAX\" | ncat <ip address> 9000\n"

@@ -41,12 +41,13 @@ done | sort >> log.html
 
 if [ -d "www" ]; then
         echo "<br /><b>Binaries can be found in /bin.</b><br />" >> log.html
-	mv /app/log.html /app/www/index.html
+        echo "</code></div></html>" >> log.html
+	mv /app/log.html /app/www/README.html
+else
+	echo "</code></div></html>" >> log.html
 fi
 
-echo "</code></div></html>" >> log.html
 printf "Processes connected!\n"
-
 while read -p "Press 'q' to quit, any other key to continue: " word; do
 	if [[ "$word" == 'q' ]]; then
 		echo "Terminating child processes..."

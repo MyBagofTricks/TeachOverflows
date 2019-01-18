@@ -29,8 +29,8 @@ done
 echo "" > log.html
 echo "<html><div><code>" >> log.html
 
-CONTENT=$(grep Game README.md -A 16 | cut -d \| -f 2,3)
-echo "${CONTENT//$'\n'/<br />}" >> log.html
+THEGAME=$(grep Game README.md -A 16 | cut -d \| -f 2,3)
+echo "${THEGAME//$'\n'/<br />}" >> log.html
 echo "</div><br /><br />" >> log.html
 
 echo "port program<br />" >> log.html
@@ -39,14 +39,13 @@ for port in "${!programs[@]}"; do
 	printf '%s:%s<br />\n' "$port" "${programs[$port]}"
 done | sort >> log.html
 
-echo "<br /><b>Binaries can be found in /bin.</b><br />" >> log.html
-echo "</codeL></div>" >> log.html
-echo "</html>" >> log.html
-printf "Processes connected!\n"
-
 if [ -d "www" ]; then
+        echo "<br /><b>Binaries can be found in /bin.</b><br />" >> log.html
 	mv /app/log.html /app/www/index.html
 fi
+
+echo "</code></div></html>" >> log.html
+printf "Processes connected!\n"
 
 while read -p "Press 'q' to quit, any other key to continue: " word; do
 	if [[ "$word" == 'q' ]]; then

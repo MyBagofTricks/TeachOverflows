@@ -8,6 +8,7 @@ trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 echo "WARNING: This program attaches intentionally vulnerable programs"
 echo "to sockets, making them accessible to other computers with access"
 echo "to your network"
+echo "" > log
 
 for i in $(find bin/ | sort); do
 	FNAME=$(basename -- "$i")
@@ -24,6 +25,7 @@ for i in $(find bin/ | sort); do
 		continue
 	fi
 	printf "Attaching %s to port %i\n" $FNAME $PORT
+	echo "${FNAME}:${PORT}" >> log
 	socat TCP-LISTEN:$PORT.reuseaddr,fork EXEC:./bin/$FNAME & 
 	PIDS+=($!)
 done

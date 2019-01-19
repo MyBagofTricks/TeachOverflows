@@ -23,25 +23,20 @@ for i in $(find /app/src/ | sort); do
 	PIDS+=($!)
 done
 
-echo "" > /app/log.html
-echo "<html><div><code>" >> /app/log.html
-
 THEGAME=$(grep Game /app/README.md -A 16 | cut -d \| -f 2,3)
-echo "${THEGAME//$'\n'/<br />}" >> /app/log.html
-echo "</div><br /><br />" >> /app/log.html
-
-echo "port program<br />" >> /app/log.html
-
-for port in "${!programs[@]}"; do
-	printf '%s:%s<br />\n' "$port" "${programs[$port]}"
-done | sort >> /app/log.html
+LEAKER=$(ldd /app/bin/level01 | grep libc | awk '{print $4}')
+#echo "${THEGAME//$'\n'/<br />}" >> /app/log.html
+#or port in "${!programs[@]}"; do
+#printf '%s:%s<br />\n' "$port" "${programs[$port]}"
+#one | sort >> /app/log.html
 
 if [ -d "/app/www" ]; then
-        echo "<br /><b>Binaries can be found in /bin, source in /src.</b><br />" >> /app/log.html
-        echo "</code></div></html>" >> /app/log.html
-	mv /app/log.html /app/www/README.html
-else
-	echo "</code></div></html>" >> /app/log.html
+	echo "<html><div><code>" > /app/www/README.html
+	echo "${THEGAME//$'\n'/<br />}" >> /app/www/README.html
+	echo "$programs <br />" >> /app/www/README.html
+        echo "<br /><b>Binaries can be found in /bin, source in /src.</b><br />" >> /app/www/README.html
+        echo "ASLR is enabled. Libc was recently loaded to ${LEAKER//$'\n'/<br />}" >> /app/www/README.html
+	echo "</code></div></html>" >> /app/www/README.html
 fi
 
 printf "Processes connected!\n"

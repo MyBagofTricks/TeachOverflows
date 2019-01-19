@@ -13,7 +13,7 @@ void feedMe(char *c);
 int main(int argc, char *argv[])
 {
        	char buffer[100];
-	printf("> %s - Stack Overflow <\nHint: Feed Me 60+ of anything\n", argv[0]);
+	printf("> %s - Stack Overflow <\nHint: Feed Me 60 characters\n", argv[0]);
 	fflush(stdout);
 	fgets(buffer, sizeof(buffer), stdin);
 	feedMe(buffer);
@@ -24,8 +24,9 @@ int main(int argc, char *argv[])
 
 void feedMe(char *c)
 {
-	if (strlen(c) < 64)
-		printf("Not enough letters\n");
+	int z = strlen(c);
+	if (z != 60)
+		printf("You entered %d characters\n", z);
 	else
 		winner();
         return;

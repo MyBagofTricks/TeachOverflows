@@ -30,20 +30,20 @@ Clone the repo:
 
 ## The Game
 
-| Level     |   Hint   |
-| ----------| ---------|
-| level01   | PRACTICE: Enter a bunch of letters |
-| level02   | PRACTICE: Enter the string at the correct offset |
-| level03   | PRACTICE: Enter the strings at the correct offsets |
-| level04   | BUFFER OVERFLOW: Same as level02, but also overwrite the value of 'changMe'|
-| level05   | BUFFER OVERFLOW: Overflow the buffer and call the 'winner' function |
-| level06   | BUFFER OVERFLOW: Same as level05 but with one tiny restriction |
-| level07   | FORMAT STRING: Overwrite the value of 'changeMe' with 0xCAFEF00D, with less than 10 chars (use printf padding!) |
-| level08   | FORMAT STRING: Overwrite the value of 'changeMe' with 512 |
-| level09   | FORMAT STRING: Overwrite the value of 'changeMe' with 0xCAFEF00D |
-| level10   | ROP: Call the 'winner' function with the correct argument |
-| level11   | ROP: Call 'feedMe2' with the correct arguments, then call 'winner' |
-| level13   | HEAP OVERFLOW: Just like a buffer overflow |
+| Level     |   Type   |   Hint    |
+| ----------| ---------|-----------|
+| level01   | Practice | Enter 60 characters |
+| level02   | PRACTICE | Enter the string at the correct offset |
+| level03   | PRACTICE | Enter the strings at the correct offsets |
+| level04   | BOF      | Enter the string, and overwrite the variable |
+| level05   | BOF      | Overflow the buffer and call winner() |
+| level06   | BOF      | Overflow the buffer and call winner() |
+| level07   | FORMAT   | Overwrite the variable with the string, using less than 10 chars |
+| level08   | FORMAT   | Overwrite the variable with 512 |
+| level09   | FORMAT   | Overwrite the variable with 0xCAFEF00D |
+| level10   | ROP      | Call the function with the correct argument |
+| level11   | ROP      | Call the first function with the correct arguments, then call 'winner' |
+| level13   | HEAP     | Just like a buffer overflow |
 
 ## Notes
 

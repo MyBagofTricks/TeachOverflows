@@ -8,6 +8,7 @@ trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 echo "WARNING: This program attaches intentionally vulnerable programs"
 echo "to sockets, making them accessible to other computers with access"
 echo "to your network"
+cd ..
 
 declare -A programs
 for i in $(find src/ | sort); do
@@ -15,9 +16,6 @@ for i in $(find src/ | sort); do
 	if [[ "$FNAME" =~ "level" ]]; then
 		PORT=$PORTSTART
 		let "PORTSTART=PORTSTART+1"
-#	elif [[ $FNAME  =~ "rop" ||  $FNAME  =~ "format" || $FNAME  =~ "heap"  ]]; then
-#		PORT=$OTHERSTART
-#		let "OTHERSTART=OTHERSTART+1"
 	else
 		continue
 	fi

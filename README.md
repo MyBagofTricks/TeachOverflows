@@ -26,7 +26,7 @@ Clone the repo:
 
 ### Using Docker
 
-`docker build -t teach && docker run -it teach`
+`docker build -t teach . && docker run -p 3010-3021:3010-3021 -it teach`
 
 ## The Game
 

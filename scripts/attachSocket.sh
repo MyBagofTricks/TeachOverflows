@@ -6,7 +6,7 @@ trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 echo "WARNING: This program attaches intentionally vulnerable programs"
 echo "to sockets, making them accessible to other computers with access"
 echo "to your network"
-cd ..
+#cd ..
 
 declare -A programs
 for i in $(find /app/src/ | sort); do
@@ -18,7 +18,7 @@ for i in $(find /app/src/ | sort); do
 		continue
 	fi
 	printf "Attaching %s to port %i\n" $FNAME $PORT
-	socat TCP-LISTEN:$PORT.reuseaddr,fork EXEC:./bin/$FNAME & 
+	socat TCP-LISTEN:$PORT.reuseaddr,fork EXEC:/app/bin/$FNAME & 
 	programs+=(["$PORT"]="$FNAME")
 	PIDS+=($!)
 done

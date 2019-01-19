@@ -29,7 +29,7 @@ void fail() {
 int main(int argc, char *argv[])
 {
 	char buffer[100];
-	printf("Welcome to %s\n\nFeed Me\n", argv[0]);
+	printf("%s - Heap Overflow <\nHint: Overflow the heap\n", argv[0]);
 	fflush(stdout);
 	fgets(buffer, sizeof(buffer), stdin);
 	feedMe(buffer);

@@ -13,7 +13,7 @@ void mathIsHard(char *c);
 int main(int argc, char *argv[])
 {
 	char buffer[64];
-	printf("Welcome to %s\n\nFeed Me\n", argv[0]);
+	printf("> %s - ROP <\nHint: Call winner with the correct password\n", argv[0]);
         fflush(stdout);
 	fgets(buffer, sizeof(buffer), stdin);
 	feedMe(buffer);

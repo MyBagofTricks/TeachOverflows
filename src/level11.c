@@ -15,7 +15,7 @@ void mathIsHard(char *c);
 int main(int argc, char *argv[])
 {
 	char buffer[100];
-	printf("Welcome to %s\n\nFeed Me\n", argv[0]);
+	printf("> %s - ROP <\nHint: Build the string and call winner\n", argv[0]);
         fflush(stdout);
 	fgets(buffer, sizeof(buffer), stdin);
 	string[0] = 0;

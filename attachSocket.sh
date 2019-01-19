@@ -1,6 +1,7 @@
 #!/bin/bash
 
 OTHERSTART=3020
+PORTSTART=3010
 STACKSTART=3010
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 
@@ -11,12 +12,12 @@ echo "to your network"
 declare -A programs
 for i in $(find src/ | sort); do
 	FNAME=$(basename -- "${i%.*}")
-	if [[ "$FNAME" =~ "stack" ]]; then
-		PORT=$STACKSTART
-		let "STACKSTART=STACKSTART+1"
-	elif [[ $FNAME  =~ "rop" ||  $FNAME  =~ "format" || $FNAME  =~ "heap"  ]]; then
-		PORT=$OTHERSTART
-		let "OTHERSTART=OTHERSTART+1"
+	if [[ "$FNAME" =~ "level" ]]; then
+		PORT=$PORTSTART
+		let "PORTSTART=PORTSTART+1"
+#	elif [[ $FNAME  =~ "rop" ||  $FNAME  =~ "format" || $FNAME  =~ "heap"  ]]; then
+#		PORT=$OTHERSTART
+#		let "OTHERSTART=OTHERSTART+1"
 	else
 		continue
 	fi

@@ -13,7 +13,7 @@ void feedMe(char *c);
 int main(int argc, char *argv[])
 {
         char buffer[100];
-	printf("Welcome to %s\n\nFeed Me More DEADBEEF\n", argv[0]);
+	printf("> %s - Stack Overflow <\nHint: Feed Me DEADBEEF & 1CEDC0C0\n", argv[0]);
         fflush(stdout);
 	fgets(buffer, sizeof(buffer), stdin);
 	feedMe(buffer);

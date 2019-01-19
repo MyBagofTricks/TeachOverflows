@@ -15,7 +15,7 @@ int changeMe;
 int main(int argc, char *argv[])
 {
 	char buffer[100];
-	printf("Welcome to %s\n\nFeed Me\n", argv[0]);
+	printf("> %s - Format String <\nHint: Overwrite changeMe with 512\n", argv[0]);
 	fflush(stdout);
 	fgets(buffer, sizeof(buffer), stdin);
 	feedMe(buffer);

@@ -13,7 +13,7 @@ void mathIsHard(char *c);
 int main(int argc, char *argv[])
 {
 	char buffer[10];
-	printf("Welcome to %s\n\nFeed Me\n", argv[0]);
+	printf("> %s - Format String <\nHint: Overwrite changeMe with 0xcafef00d\n", argv[0]);
 	fflush(stdout);
 	fgets(buffer, sizeof(buffer), stdin);
 	feedMe(buffer);

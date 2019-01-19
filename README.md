@@ -20,28 +20,32 @@ Clone the repo:
 
 `$ git clone https://github.com/MyBagofTricks/TeachOverflows.git`
 
-Set permissions and run build script: 
+### Using make
 
-`$ cd TeachOverflows && chmod +x build.sh && ./build.sh`
+```make
+``` 
 
-Binaries will be compiled to "bin/". Run each individually and have fun
+### Using Docker
+
+```docker build -t teach && docker run -it teach
+```
 
 ## The Game
 
-| Program    |  Hint    |
-| -----------| ---------|
-| stack00 | Enter a bunch of letters |
-| stack01 | Enter the string at the correct offset |
-| stack02 | Enter the strings at the correct offsets |
-| stack10 | Same as stack01, but also overwrite the buffer to change the value of the 'changMe' variable |
-| stack11 | Overflow the buffer and call the 'winner' function |
-| stack12 | Same as stack11 but with one tiny restriction |
-| format10 | Overwrite the value of 'changeMe' with 0xCAFEF00D. Payload must be less than 10 chars long (Hint: use printf padding!) |
-| format11 | Overwrite the value of 'changeMe' with 512 |
-| format12 | Overwrite the value of 'changeMe' with 0xCAFEF00D |
-| heap11   | Heap overflow. Just like a buffer overflow |
-| rop10 | Call the 'winner' function with the correct argument |
-| rop11 | Call 'feedMe2' with the correct arguments, then call 'winner' |
+| Level     |   Hint   |
+| ----------| ---------|
+| level01   | PRACTICE: Enter a bunch of letters |
+| level02   | PRACTICE: Enter the string at the correct offset |
+| level03   | PRACTICE: Enter the strings at the correct offsets |
+| level04   | BUFFER OVERFLOW: Same as level02, but also overwrite the value of 'changMe'|
+| level05   | BUFFER OVERFLOW: Overflow the buffer and call the 'winner' function |
+| level06   | BUFFER OVERFLOW: Same as level05 but with one tiny restriction |
+| level07   | FORMAT STRING: Overwrite the value of 'changeMe' with 0xCAFEF00D, with less than 10 chars (use printf padding!) |
+| level08   | FORMAT STRING: Overwrite the value of 'changeMe' with 512 |
+| level09   | FORMAT STRING: Overwrite the value of 'changeMe' with 0xCAFEF00D |
+| level10   | ROP: Call the 'winner' function with the correct argument |
+| level11   | ROP: Call 'feedMe2' with the correct arguments, then call 'winner' |
+| level13   | HEAP OVERFLOW: Just like a buffer overflow |
 
 ## Notes
 
@@ -58,7 +62,7 @@ Do so by executing this command as root:
 You can wrap each program in a socket using netcat. nc doesn't seem 
 to play nice, but the ncat which comes with nmap seems fine. 
 ```
-ncat -e ./stack1 -lvknp 9999`
+ncat -e ./level01 -lvknp 9999`
 
     - -e <script>: execute script
     - -lvknp 9999: listen, verbose, keep open (multi handler), nodns, port <9999>
@@ -67,7 +71,7 @@ Note: Netcat has some quirks where it may close the in/out pipe before the
 program closes. Using socat when hosting the files instead of metcat 
 mitigates this issue. You can also see cheatsheet.txt for another workaround.
 ```
-socat TCP-LISTEN:3000.reuseaddr,fork EXEC:./stack01`
+socat TCP-LISTEN:3000.reuseaddr,fork EXEC:./level01`
 
     - TCP-LISTEN:<port>: port to listen on
     - reuseaddr: bind to a port even if it is being partially used

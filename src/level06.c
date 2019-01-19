@@ -14,7 +14,7 @@ void winner(void);
 int main(int argc, char *argv[])
 {
 	char buffer[200];
-	printf("Welcome to %s\n\nFeed Me\n", argv[0]);
+	printf("> %s - Stack Overflow <\nHint: Feed Me and call winner()\n", argv[0]);
         fflush(stdout);
 	fgets(buffer, sizeof(buffer), stdin);
 	feedMe(buffer);

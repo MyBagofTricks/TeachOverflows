@@ -7,7 +7,7 @@ RUN apk add --update --no-cache bash socat build-base lighttpd && \
     && sed -i '/dir\-listing\.activate/s/^#//g' /etc/lighttpd/lighttpd.conf \
     && apk update && apk del build-base && rm /app/src/magic.c \
     && adduser -D flag flag && chown flag:flag -R /app/bin \
-    && chmod 4755 -R /app/bin && chmod +x /app/scripts/run.sh \
+    && chmod 4755 -R /app/bin && chmod +x /app/scripts/runDocker.sh \
     && ln -s /var/www/localhost/htdocs /app/www \
     && ln -s /app/bin /app/www/bin && ln -s /app/src /app/www/src \
     && cp /lib/ld-musl-i386.so.1 /app/bin 

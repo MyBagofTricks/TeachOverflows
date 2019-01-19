@@ -23,7 +23,7 @@ for i in $(find /app/src/ | sort); do
 	PIDS+=($!)
 done
 
-THEGAME=$(grep Game /app/README.md -A 16 | cut -d \| -f 2,3)
+THEGAME=$(grep Game /app/README.md -A 16 | cut -d \| -f 2,4)
 LEAKER=$(ldd /app/bin/level01 | grep libc | awk '{print $4}')
 #echo "${THEGAME//$'\n'/<br />}" >> /app/log.html
 #or port in "${!programs[@]}"; do

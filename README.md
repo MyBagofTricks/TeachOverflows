@@ -22,13 +22,11 @@ Clone the repo:
 
 ### Using make
 
-```make
-``` 
+`make` 
 
 ### Using Docker
 
-```docker build -t teach && docker run -it teach
-```
+`docker build -t teach && docker run -it teach`
 
 ## The Game
 

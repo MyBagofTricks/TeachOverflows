@@ -6,7 +6,7 @@ adduser -D flag flag
 chmod 755 -R /app/bin
 chown flag:flag -R /app/bin
 chmod +s -R /app/bin
-chmod +x /app/run.sh
+chmod +x /app/scripts/run.sh
 
 cat > /app/bin/secretflag.txt << 'EOF'
 this is only readable by u:flag!

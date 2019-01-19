@@ -7,9 +7,12 @@ RUN apk add --update --no-cache bash socat build-base lighttpd && \
     && sed -i '/dir\-listing\.activate/s/^#//g' /etc/lighttpd/lighttpd.conf \
     && apk update && apk del build-base && rm /app/src/magic.c
     
-#ADD scripts/buildDocker.sh buildDocker.sh
-#ADD scripts/run.sh run.sh
+#ADD scripts/buildDocker.sh /app/scripts/buildDocker.sh
+#ADD scripts/run.sh /app/scripts/run.sh
+COPY scripts/* /app/scripts/
 
-RUN /app/scripts/buildDocker.sh 
+RUN chmod +x /app/scripts/buildDocker.sh \
+    && chmod +x /app/scripts/run.sh \
+    && /app/scripts/buildDocker.sh 
 
 ENTRYPOINT ["/app/scripts/run.sh"]

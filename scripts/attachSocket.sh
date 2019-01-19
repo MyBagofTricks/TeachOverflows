@@ -1,8 +1,6 @@
 #!/bin/bash
 
-OTHERSTART=3020
 PORTSTART=3010
-STACKSTART=3010
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 
 echo "WARNING: This program attaches intentionally vulnerable programs"
@@ -11,7 +9,7 @@ echo "to your network"
 cd ..
 
 declare -A programs
-for i in $(find src/ | sort); do
+for i in $(find /app/src/ | sort); do
 	FNAME=$(basename -- "${i%.*}")
 	if [[ "$FNAME" =~ "level" ]]; then
 		PORT=$PORTSTART
@@ -25,25 +23,25 @@ for i in $(find src/ | sort); do
 	PIDS+=($!)
 done
 
-echo "" > log.html
-echo "<html><div><code>" >> log.html
+echo "" > /app/log.html
+echo "<html><div><code>" >> /app/log.html
 
-THEGAME=$(grep Game README.md -A 16 | cut -d \| -f 2,3)
-echo "${THEGAME//$'\n'/<br />}" >> log.html
-echo "</div><br /><br />" >> log.html
+THEGAME=$(grep Game /app/README.md -A 16 | cut -d \| -f 2,3)
+echo "${THEGAME//$'\n'/<br />}" >> /app/log.html
+echo "</div><br /><br />" >> /app/log.html
 
-echo "port program<br />" >> log.html
+echo "port program<br />" >> /app/log.html
 
 for port in "${!programs[@]}"; do
 	printf '%s:%s<br />\n' "$port" "${programs[$port]}"
-done | sort >> log.html
+done | sort >> /app/log.html
 
-if [ -d "www" ]; then
-        echo "<br /><b>Binaries can be found in /bin, source in /src.</b><br />" >> log.html
-        echo "</code></div></html>" >> log.html
+if [ -d "/app/www" ]; then
+        echo "<br /><b>Binaries can be found in /bin, source in /src.</b><br />" >> /app/log.html
+        echo "</code></div></html>" >> /app/log.html
 	mv /app/log.html /app/www/README.html
 else
-	echo "</code></div></html>" >> log.html
+	echo "</code></div></html>" >> /app/log.html
 fi
 
 printf "Processes connected!\n"

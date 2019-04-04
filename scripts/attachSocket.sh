@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 PORTSTART=3010
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
@@ -25,10 +25,6 @@ done
 
 THEGAME=$(grep Game /app/README.md -A 16 | cut -d \| -f 2,4)
 LEAKER=$(ldd /app/bin/level01 | grep libc | awk '{print $4}')
-#echo "${THEGAME//$'\n'/<br />}" >> /app/log.html
-#or port in "${!programs[@]}"; do
-#printf '%s:%s<br />\n' "$port" "${programs[$port]}"
-#one | sort >> /app/log.html
 
 if [ -d "/app/www" ]; then
 	echo "<html><div><code>" > /app/www/index.html

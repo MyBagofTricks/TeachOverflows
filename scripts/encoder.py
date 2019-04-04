@@ -18,7 +18,6 @@ def magic_shift(letter, key):
     offset = lambda x: 65 if x.isupper() else 97
     return ( (((ord(letter) - offset(letter) ) + key%26) % 26) + offset(letter))
 
-
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         raise SystemExit

@@ -1,4 +1,4 @@
-FROM i386/ubuntu:latest 
+FROM i386/ubuntu:19.04 
 WORKDIR /app 
 COPY src/* /app/src/    
 COPY Makefile /app/
@@ -9,9 +9,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && make && useradd flag -M && chown flag:flag -R /app/bin \
     && chmod 4755 -R /app/bin && ln -s /var/www/html /app/www \ 
     && ln -s /app/bin /app/www/bin && ln -s /app/src /app/www/src \
-    && cp /lib/i386-linux-gnu/libc.so.6 /app/bin 
-
-RUN apt-get remove g++ gcc -y && rm -rf /var/lib/apt/lists/* \
+    && cp /lib/i386-linux-gnu/libc.so.6 /app/bin \
+    && apt-get remove g++ gcc -y && rm -rf /var/lib/apt/lists/* \
     && echo 'dir-listing.activate = "enable"' >> /etc/lighttpd/lighttpd.conf 
 
 COPY README.md /app/README.md

@@ -17,3 +17,4 @@ COPY scripts/* /app/scripts/
 RUN chmod +x /app/scripts/runDocker.sh
 
 ENTRYPOINT ["/app/scripts/runDocker.sh"]
+#ENTRYPOINT ["/bin/bash"]

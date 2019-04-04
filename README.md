@@ -2,9 +2,8 @@
 
 This is a collection of buffer overflow challenges intended to 
 demonstrate and teach the basic concepts. Compile as-is or add 
-your own custom flags using 'makeFlag.py', paste the result into 
-the 'SECRET' field in the appropriate .c file, build them, and 
-have fun.
+your own custom flags by updating flags.txt in the scripts folder
+and running 'makeflags.sh'.
 
 These programs are intentionally vulnerable and should not be exposed 
 directly to the internet unless the system is meant to be attacked.
@@ -43,7 +42,7 @@ Clone the repo:
 | level09   | FORMAT   | Overwrite the variable with 0xCAFEF00D |
 | level10   | ROP      | Call the function with the correct argument |
 | level11   | ROP      | Call the first function with the correct arguments, then call 'winner' |
-| level13   | HEAP     | Just like a buffer overflow |
+| level12   | HEAP     | Just like a buffer overflow |
 
 ## Notes
 
@@ -82,8 +81,7 @@ used when compiling for the server, so the attacker can compile
 their own.
 
 ## Your "encryption" is bad!
-It's only designed to be more effort to reverse than complete the 
-challenge, assuming you include source code. 
+Correct. Reversing it should be some easy homework.
 
 ## Recommended Reading and Acknowledgements
 **The Shellcoder's Handbook: Discovering and Exploiting Security Holes**

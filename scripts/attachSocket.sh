@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PORTSTART=3010
+PORTSTART=3001
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 
 echo "WARNING: This program attaches intentionally vulnerable programs"

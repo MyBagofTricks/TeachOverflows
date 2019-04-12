@@ -1,15 +1,15 @@
 # TeachOverflows
 
 This is a collection of buffer overflow challenges intended to 
-demonstrate and teach the basic concepts. Compile as-is or add 
-your own custom flags by updating flags.txt in the scripts folder
-and running 'makeflags.sh'.
+demonstrate the basic concepts. Compile as-is or add your own 
+custom flags by updating flags.txt in the scripts folder
+and running 'scripts/makeflags.sh'.
 
 These programs are intentionally vulnerable and should not be exposed 
 directly to the internet unless the system is meant to be attacked.
 
 ## Requirements
-- Python 2/3 (for custom flags)
+- Python
 - Linux with base development tools installed (gcc, make, etc)
 - gcc-multilib if compiling on a x64 machine
 
@@ -25,7 +25,7 @@ Clone the repo:
 
 ### Using Docker
 
-`docker build -t teach . && docker run -p 80:80 -p 3010-3022:3010-3022 -it teach`
+`docker build -t teach . && docker run -p 80:80 -p 3001-3012:3001-3012 --restart on-failure -it teach`
 
 ## The Game
 
@@ -33,16 +33,16 @@ Clone the repo:
 | ----------| ---------|-----------|
 | level01   | Practice | Enter 60 characters |
 | level02   | PRACTICE | Enter the string at the correct offset |
-| level03   | PRACTICE | Enter the strings at the correct offsets |
+| level03   | Practice | Enter the strings at the correct offsets |
 | level04   | BOF      | Enter the string, and overwrite the variable |
 | level05   | BOF      | Overflow the buffer and call winner() |
 | level06   | BOF      | Overflow the buffer and call winner() |
-| level07   | FORMAT   | Overwrite the variable with the string, using less than 10 chars |
-| level08   | FORMAT   | Overwrite the variable with 512 |
-| level09   | FORMAT   | Overwrite the variable with 0xCAFEF00D |
+| level07   | Format   | Overwrite the variable with the string, using less than 10 chars |
+| level08   | Format   | Overwrite the variable with 512 |
+| level09   | Format   | Overwrite the variable with 0xCAFEF00D |
 | level10   | ROP      | Call the function with the correct argument |
 | level11   | ROP      | Call the first function with the correct arguments, then call 'winner' |
-| level12   | HEAP     | Just like a buffer overflow |
+| level12   | Heap     | Just like a buffer overflow |
 
 ## Notes
 
@@ -75,13 +75,13 @@ socat TCP-LISTEN:3000.reuseaddr,fork EXEC:./level01`
     - fork: fork the connection. Similar effect to -k in ncat
     - EXEC:<./program>: Program to execute
 ```
-To beat most of these challenges remotely, attackers will either need a 
+To beat some of these challenges remotely, attackers will either need a 
 copy of the binaries, or the source and the specifics of the disto 
 used when compiling for the server, so the attacker can compile 
 their own.
 
 ## Your "encryption" is bad!
-Correct. Reversing it should be some easy homework.
+Correct. Reversing it should be easy homework.
 
 ## Recommended Reading and Acknowledgements
 **The Shellcoder's Handbook: Discovering and Exploiting Security Holes**

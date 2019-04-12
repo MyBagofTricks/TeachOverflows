@@ -40,5 +40,6 @@ void feedMe2(int password, int password2)
 void winner() {
 	if (!strcmp(string, "magic!"))
 		mathIsHard(SECRET);
+	exit(0);
 	return;
 }

@@ -32,5 +32,6 @@ void winner(int password)
 {
 	if (password == 0xCAFEF00D) mathIsHard(SECRET);
 	else printf("Not quite\n");
+	exit(0);
 	return;
 }

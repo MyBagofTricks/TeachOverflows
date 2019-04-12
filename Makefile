@@ -19,7 +19,7 @@ level05: src/level05.c
 	$(CC) $(CFLAGS) src/level05.c -o bin/level05
 	
 level06: src/level06.c
-	$(CC) $(CFLAGS) src/level06.c -o bin/level06
+	$(CC) $(CFLAGS) -s src/level06.c -o bin/level06
 
 level07: src/level07.c
 	$(CC) $(CFLAGS) src/level07.c -o bin/level07

@@ -24,10 +24,6 @@ int main(int argc, char *argv[])
 void feedMe(char *str)
 {	
 	char buffer[80];
-	if(strchr(str, 0x41) != NULL) {
-			printf("Denied! Don't be so predictable\n");
-			exit(0);
-	}
 	strcpy(buffer, str);
 	return;
 }

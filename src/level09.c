@@ -29,7 +29,7 @@ void feedMe(char *string)
 	if(changeMe == 0xcafef00d)
 		winner();
 	else
-		printf("changeMe is: %d\n", changeMe);
+		printf("changeMe is:0x%x\n", changeMe);
 	return;
 }
 

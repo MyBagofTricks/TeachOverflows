@@ -3,12 +3,11 @@
 #include <stdlib.h>
 #include "magic.c"
 
-char *SECRET="\x56\x17\x46\x17\x7b\x15\x7b\x10\x53\x0a\x0a\x0a\x46\x14\x5e\x7b\x4d\x14\x41\x7b\x52\x15\x51\x17\x7b\x10\x7b\x56\x41\x46\x46\x15\x49\x10\x5c\x17";
+int SECRET[36] = {0x56,0x17,0x46,0x17,0x7b,0x15,0x7b,0x10,0x53,0xa,0xa,0xa,0x46,0x14,0x5e,0x7b,0x4d,0x14,0x41,0x7b,0x52,0x15,0x51,0x17,0x7b,0x10,0x7b,0x56,0x41,0x46,0x46,0x15,0x49,0x10,0x5c,0x17};
 
-
+void mathIsHard(int *secret, int key);
 void feedMe(char *str);
 void winner(int input);
-void mathIsHard(char *c);
 
 int main(int argc, char *argv[])
 {
@@ -31,8 +30,11 @@ void feedMe(char *input)
 
 void winner(int password)
 {
-	if (password == 0xCAFEF00D) mathIsHard(SECRET);
-	else printf("Not quite\n");
+	if (password == 0xCAFEF00D) {
+		size_t key = sizeof(SECRET)/sizeof(SECRET[0]);
+		mathIsHard(SECRET, key);
+	} else {
+		printf("Not quite\n");
+	}
 	exit(0);
-	return;
 }

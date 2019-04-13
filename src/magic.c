@@ -2,13 +2,11 @@
 #include <string.h>
 #include <unistd.h>
 
-void mathIsHard(char *secret)
+void mathIsHard(int *secret, int key)
 {
-	int i;
-        int key = strlen(secret);
 	char flag[255] = {0x20};
         printf("\nYou win! Decrypting...\n");
-        for (i = 0; secret[i] != '\0'; i++) {
+        for (int i = 0; secret[i] != '\0'; i++) {
                 char ch;
                 ch = secret[i]  ^ key;
                 if (ch >= 97 && ch <= 122) {

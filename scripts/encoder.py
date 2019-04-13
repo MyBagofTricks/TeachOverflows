@@ -1,18 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# sed  '/SECRET/c\ABCDEFG' ../src/level01.c
 import sys
 
 def encoder(plaintext, key):
     offset = lambda x: 65 if x.isupper() else 97
-    encoded = bytearray()          
+    encoded = [] 
     for l in plaintext:   
         if l.isalpha():
             encoded.append(magic_shift(l, key) ^ key)
         else:
             encoded.append(ord(l) ^ key)
-    return encoded
+    return [hex(x) for x in encoded]
                                                                                    
 def magic_shift(letter, key):
     offset = lambda x: 65 if x.isupper() else 97
@@ -29,5 +27,7 @@ if __name__ == "__main__":
         raise SystemExit
     key = len(plaintext)
     secret = encoder(plaintext, key)
-    print("".join("'{}'".format(''.join('\\x{:02x}'.format(b) for b in secret))))
+    formatted = str(secret).replace("[", "{").replace("]", "}").replace(", ", ",").replace("'","")
+    output = ("int SECRET[{}] = {};".format(str(key), formatted))
+    print(output)
 

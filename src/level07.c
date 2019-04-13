@@ -3,12 +3,11 @@
 #include <stdlib.h>
 #include "magic.c"
 
-char *SECRET="\x5a\x1c\x5a\x72\x5f\x1d\x43\x72\x4c\x1e\x19\x46\x72\x1a\x4c\x1e\x72\x4e\x1d\x49\x1e\x72\x19\x58\x1d\x43\x1a\x72\x43\x5a\x44\x12\x4a\x42\x4b\x72\x5a\x1d\x4a\x1a\x72\x5b\x19\x46\x1e";
+int SECRET[45] = {0x5a,0x1c,0x5a,0x72,0x5f,0x1d,0x43,0x72,0x4c,0x1e,0x19,0x46,0x72,0x1a,0x4c,0x1e,0x72,0x4e,0x1d,0x49,0x1e,0x72,0x19,0x58,0x1d,0x43,0x1a,0x72,0x43,0x5a,0x44,0x12,0x4a,0x42,0x4b,0x72,0x5a,0x1d,0x4a,0x1a,0x72,0x5b,0x19,0x46,0x1e};
 
-
+void mathIsHard(int *secret, int key);
 void feedMe(char *str);
 void winner();
-void mathIsHard(char *c);
 
 int main(int argc, char *argv[])
 {
@@ -33,7 +32,9 @@ void feedMe(char *string)
 		winner();
 }
 
-void winner() {
-	mathIsHard(SECRET);
-	exit(0);
+void winner(void)
+{
+        size_t key = sizeof(SECRET)/sizeof(SECRET[0]);
+        mathIsHard(SECRET, key);
+        exit(0);
 }

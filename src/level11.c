@@ -3,13 +3,13 @@
 #include <stdlib.h>
 #include "magic.c"
 
-char *SECRET="\x54\x14\x46\x7b\x13\x56\x14\x11\x17\x7b\x10\x48\x14\x41\x13\x7b\x13\x14\x7b\x46\x14\x5e\x7b\x43\x17\x7b\x11\x10\x52\x41\x13\x17\x7b\x4d\x14\x41";
+int SECRET[36] = {0x54,0x14,0x46,0x7b,0x13,0x56,0x14,0x11,0x17,0x7b,0x10,0x48,0x14,0x41,0x13,0x7b,0x13,0x14,0x7b,0x46,0x14,0x5e,0x7b,0x43,0x17,0x7b,0x11,0x10,0x52,0x41,0x13,0x17,0x7b,0x4d,0x14,0x41};
 char string[64];
 
+void mathIsHard(int *secret, int key);
 void feedMe(char *str);
 void feedMe2(int password, int password2);
 void winner();
-void mathIsHard(char *c);
 
 int main(int argc, char *argv[])
 {
@@ -38,8 +38,9 @@ void feedMe2(int password, int password2)
 }
 
 void winner() {
-	if (!strcmp(string, "magic!"))
-		mathIsHard(SECRET);
+	if (!strcmp(string, "magic!")) {
+		size_t key = sizeof(SECRET)/sizeof(SECRET[0]);
+		mathIsHard(SECRET, key);
+	}
 	exit(0);
-	return;
 }

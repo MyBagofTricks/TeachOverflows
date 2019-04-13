@@ -16,9 +16,8 @@ fi
 for flag in $(cat $DIR/flags.txt); do
 	echo $flag 
 	level=$(echo "$flag" | cut -d\: -f1)
-	text=$(echo "$flag" | cut -d\: -f2)
+	text=$(echo "$flag" | cut -d\: -f2-99)
 	crypted=$(python $DIR/encoder.py $text)
+	sed -i "/int SECRET/s/.*/$crypted/" $DIR/../src/${level}.c         
 
-        sed -i '/*SECRET/c\char *SECRET='\"${crypted}\"\;'\' $DIR/../src/${level}.c
-        sed -i -e "s/\"'/\"/g" -e "s/'\"/\"/g" $DIR/../src/${level}.c
 done

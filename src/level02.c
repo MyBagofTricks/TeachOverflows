@@ -3,11 +3,10 @@
 #include <string.h>
 #include "magic.c"
 
-char *SECRET="\x2a\x76\x29\x2a\x42\x67\x29\x28\x6c\x2a\x42\x28\x2d\x42\x78\x29\x7a\x42\x6c\x2d\x67\x42\x67\x29\x28\x42\x2c\x2a\x22";
+int SECRET[29] = {0x2a,0x76,0x29,0x2a,0x42,0x67,0x29,0x28,0x6c,0x2a,0x42,0x28,0x2d,0x42,0x78,0x29,0x7a,0x42,0x6c,0x2d,0x67,0x42,0x67,0x29,0x28,0x42,0x2c,0x2a,0x22};
 
-
+void mathIsHard(int *secret, int key);
 void winner(void);
-void mathIsHard(char *secret);
 void feedMe(char *c);
 
 int main(int argc, char *argv[])
@@ -40,6 +39,7 @@ void feedMe(char *c)
 
 void winner(void)
 {
-	mathIsHard(SECRET);
-	exit(0);
+        size_t key = sizeof(SECRET)/sizeof(SECRET[0]);
+        mathIsHard(SECRET, key);
+        exit(0);
 }

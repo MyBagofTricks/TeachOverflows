@@ -4,13 +4,12 @@
 #include <sys/types.h>
 #include "magic.c"
 
-char *SECRET="\x7c\x2f\x2a\x76\x6d\x68\x28\x44\x2a\x2e\x44\x2f\x76\x63\x2f\x61\x2e\x44\x2f\x74\x44\x2b\x6a\x2c\x2a\x2b\x74";
+int SECRET[27] = {0x7c,0x2f,0x2a,0x76,0x6d,0x68,0x28,0x44,0x2a,0x2e,0x44,0x2f,0x76,0x63,0x2f,0x61,0x2e,0x44,0x2f,0x74,0x44,0x2b,0x6a,0x2c,0x2a,0x2b,0x74};
 
-
+void mathIsHard(int *secret, int key);
 void feedMe(char *str);
 void winner();
 void fail();
-void mathIsHard(char *c);
 
 struct data {
 	char name[64];
@@ -49,7 +48,9 @@ void feedMe(char *string)
 	return;
 }
 
-void winner() {
-	mathIsHard(SECRET);
-	exit(0);
+void winner(void)
+{
+        size_t key = sizeof(SECRET)/sizeof(SECRET[0]);
+        mathIsHard(SECRET, key);
+        exit(0);
 }

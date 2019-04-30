@@ -2,7 +2,7 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-echo "[*] This script replaces existing flags with those in flags.txt. Don't use spaces in flags!"
+echo "[*] This script replaces existing flags with those in flags.txt."
 echo "[!] Replace flags? Y/n"
 read response
 
@@ -13,6 +13,7 @@ else
 	echo "[*] Replacing flags"
 fi
 
+IFS=$'\n'
 for flag in $(cat $DIR/flags.txt); do
 	echo $flag 
 	level=$(echo "$flag" | cut -d\: -f1)

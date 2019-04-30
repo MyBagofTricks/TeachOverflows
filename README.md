@@ -32,7 +32,7 @@ Clone the repo:
 | Level     |   Type   |   Hint    |
 | ----------| ---------|-----------|
 | level01   | Practice | Enter 60 characters |
-| level02   | PRACTICE | Enter the string at the correct offset |
+| level02   | Practice | Enter the string at the correct offset |
 | level03   | Practice | Enter the strings at the correct offsets |
 | level04   | BOF      | Enter the string, and overwrite the variable |
 | level05   | BOF      | Overflow the buffer and call winner() |

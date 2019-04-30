@@ -22,12 +22,13 @@ THEGAME=$(grep Game /app/README.md -A 16 | cut -d \| -f 2,4)
 LEAKER=$(ldd /app/bin/level01 | grep libc | awk '{print $4}')
 
 if [ -d "/app/www" ]; then
-	echo "<html><div><code>" > /app/www/index.html
-	echo "${THEGAME//$'\n'/<br />}" >> /app/www/index.html
-	echo "$programs <br />" >> /app/www/index.html
-        echo "<br /><b>Binaries are in /bin, source in /src.</b><br />" >> /app/www/index.html
-        echo "ASLR enabled. Libc was recently loaded to ${LEAKER//$'\n'/<br />}" >> /app/www/index.html
-	echo "</code></div></html>" >> /app/www/index.html
+	cat > /app/www/index.html << __EOF__
+<html><body><div><pre>$THEGAME
+<br /><b>Binaries are in <a href="bin/">bin/</a>
+<br />Source in <a href="src/">src/</a></b>
+<br />ASLR enabled. Libc was recently loaded to $LEAKER"
+</pre></div></body></html>
+__EOF__
 fi
 
 printf "Processes connected!\n"
@@ -37,7 +38,6 @@ echo "to sockets, making them accessible to other computers with access"
 echo "to your network"
 
 while read -p "Press 'q' to quit, any other key to continue: " word; do
-	
 	if [[ "$word" == 'q' ]]; then
 		echo "Terminating child processes..."
 		break

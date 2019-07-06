@@ -13,11 +13,9 @@ int main(int argc, char *argv[])
 {
 	char buffer[64];
 	printf("> %s - ROP <\nHint: Call winner with the correct password\n", argv[0]);
-        fflush(stdout);
 	fgets(buffer, sizeof(buffer), stdin);
 	feedMe(buffer);
 	printf("Try again\n");
-        fflush(stdout);
 	return 0;
 }
 

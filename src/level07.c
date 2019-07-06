@@ -12,12 +12,10 @@ void winner();
 int main(int argc, char *argv[])
 {
 	char buffer[10];
-	printf("> %s - Format String <\nHint: Overwrite changeMe with 0xcafef00d\n", argv[0]);
-	fflush(stdout);
+	printf("> %s - Format String <\nHint: Overwrite changeMe with 0xcafef00d.\nKeep the payload under 9 bytes\n", argv[0]);
 	fgets(buffer, sizeof(buffer), stdin);
 	feedMe(buffer);
 	printf("Try again\n");
-	fflush(stdout);
 	return 0;
 }
 

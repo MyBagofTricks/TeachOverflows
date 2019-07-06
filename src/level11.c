@@ -15,12 +15,10 @@ int main(int argc, char *argv[])
 {
 	char buffer[100];
 	printf("> %s - ROP <\nHint: Build the string and call winner\n", argv[0]);
-        fflush(stdout);
 	fgets(buffer, sizeof(buffer), stdin);
 	string[0] = 0;
 	feedMe(buffer);
 	printf("Try again\n");
-        fflush(stdout);
 	return 0;
 }
 

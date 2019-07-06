@@ -26,6 +26,5 @@ void mathIsHard(int *secret, int key)
                 usleep(100000);
         }
         printf("\n");
-        fflush(stdout);
         return;
 }

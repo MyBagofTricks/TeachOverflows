@@ -6,12 +6,13 @@ custom flags by updating flags.txt in the scripts folder
 and running 'scripts/makeflags.sh'.
 
 These programs are intentionally vulnerable and should not be exposed 
-directly to the internet unless the system is meant to be attacked.
+directly to a network the intention is to have them attacked.
 
 ## Requirements
 - Python
 - Linux with base development tools installed (gcc, make, etc)
 - gcc-multilib if compiling on a x64 machine
+- optional: docker
 
 ## Instructions
 
@@ -25,7 +26,7 @@ Clone the repo:
 
 ### Using Docker
 
-`docker build -t teach . && docker run -p 80:80 -p 3001-3012:3001-3012 --restart on-failure -it teach`
+`docker build -t teach . && docker run -p 80:80 --hostname=TeachOverFlows -p2222:22 -it teach`
 
 ## The Game
 
@@ -46,39 +47,14 @@ Clone the repo:
 
 ## Notes
 
-If compiling manually with gcc, use '-fno-stack-protector -no-pie' to
+If compiling challenges manually with gcc, use '-fno-stack-protector -no-pie' to
 disable Address Space Layout Randomization and stack protections. Disabling
-globally is also recommended when targeting libc.
+globally can be done to simplify attacks on libc.
 
-Do so by executing this command as root:
+Execute as root to disable ASLR globally:
 
 `echo 0 > /proc/sys/kernel/randomize_va_space`
 
-## Running on a socket
-
-You can wrap each program in a socket using netcat. nc doesn't seem 
-to play nice, but the ncat which comes with nmap seems fine. 
-```
-ncat -e ./level01 -lvknp 9999`
-
-    - -e <script>: execute script
-    - -lvknp 9999: listen, verbose, keep open (multi handler), nodns, port <9999>
-```
-Note: Netcat has some quirks where it may close the in/out pipe before the 
-program closes. Using socat when hosting the files instead of metcat 
-mitigates this issue. You can also see cheatsheet.txt for another workaround.
-```
-socat TCP-LISTEN:3000.reuseaddr,fork EXEC:./level01`
-
-    - TCP-LISTEN:<port>: port to listen on
-    - reuseaddr: bind to a port even if it is being partially used
-    - fork: fork the connection. Similar effect to -k in ncat
-    - EXEC:<./program>: Program to execute
-```
-To beat some of these challenges remotely, attackers will either need a 
-copy of the binaries, or the source and the specifics of the disto 
-used when compiling for the server, so the attacker can compile 
-their own.
 
 ## Your "encryption" is bad!
 Correct. Reversing it should be easy homework.

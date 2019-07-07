@@ -28,6 +28,11 @@ Clone the repo:
 
 `docker build -t teach . && docker run -p 80:80 --hostname=TeachOverFlows -p2222:22 -it teach`
 
+- Default ssh user/pass is: overflow:overflow
+- Password can be updated by replacing the hash in scripts/runDocker.sh
+- Create scripts/authorized_keys with a public key to skip passwords completely
+
+
 ## The Game
 
 | Level     |   Type   |   Hint    |

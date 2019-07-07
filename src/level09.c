@@ -2,36 +2,39 @@
 #include <string.h>
 #include <stdlib.h>
 #include "magic.c"
+#define BUF_SIZE 64
+#define GET_SIZE 64 
 
 int SECRET[46] = {0x5f,0x4c,0x1e,0x1d,0x5e,0x1d,0x42,0x71,0x59,0x1e,0x46,0x19,0x42,0x1e,0x48,0x1b,0x71,0x19,0x4c,0x1d,0x71,0x1b,0x19,0x1a,0x59,0x4b,0x71,0x59,0x1e,0x46,0x19,0x42,0x1e,0x48,0x1b,0x71,0x19,0x4c,0x1d,0x71,0x54,0x41,0x19,0x41,0x42,0x1d};
 
 void mathIsHard(int *secret, int key);
-void feedMe(char *str);
+void feedMe();
 void winner();
 int changeMe;
 
 
 int main(int argc, char *argv[])
 {
-	char buffer[100];
-	printf("%s - Format String <\nHint: Overwrite changeMe with 0xcafef00d\n", argv[0]);
-	fgets(buffer, sizeof(buffer), stdin);
-	feedMe(buffer);
+	printf("%s - Format String <\n", argv[0]);
+	feedMe();
 	printf("Try again\n");
 	return 0;
 }
 
-void feedMe(char *string)
+void feedMe()
 {
-	printf(string);
-	if(changeMe == 0xcafef00d)
+	printf("Overwrite changeMe with 0xcafef00d\n> ");
+	char buffer[BUF_SIZE];
+	fgets(buffer, GET_SIZE, stdin);
+	printf(buffer);
+	if(changeMe == 0xCAFEF00D)
 		winner();
 	else
 		printf("changeMe is:0x%x\n", changeMe);
 	return;
 }
 
-void winner(void)
+void winner()
 {
         size_t key = sizeof(SECRET)/sizeof(SECRET[0]);
         mathIsHard(SECRET, key);

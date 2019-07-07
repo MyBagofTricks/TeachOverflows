@@ -2,31 +2,35 @@
 #include <stdlib.h>
 #include <string.h>
 #include "magic.c"
+#define BUF_SIZE 100
+#define GET_SIZE 100
 
 int SECRET[29] = {0x2a,0x76,0x29,0x2a,0x42,0x67,0x29,0x28,0x6c,0x2a,0x42,0x28,0x2d,0x42,0x78,0x29,0x7a,0x42,0x6c,0x2d,0x67,0x42,0x67,0x29,0x28,0x42,0x2c,0x2a,0x22};
 
 void mathIsHard(int *secret, int key);
-void winner(void);
-void feedMe(char *c);
+void winner();
+void feedMe();
 
 int main(int argc, char *argv[])
 {
-	char buffer[100];
-	printf("> %s - Stack Overflow <\nHint: Feed Me DEADBEEF\n", argv[0]);
-	fgets(buffer, sizeof(buffer), stdin);
-	feedMe(buffer);
+	printf("> %s - Stack Overflow <\n", argv[0]);
+	feedMe();
 	printf("Try again\n");
 	return 0;
 }
 
-void feedMe(char *c)
+void feedMe()
 {
+	printf("Feed me DEADBEEF\n> ");
+	char buffer[BUF_SIZE];
+	memset(buffer, 0, BUF_SIZE);
+	fgets(buffer, GET_SIZE, stdin);
         char *food = "DEADBEEF";
         char buf[9] = "\0";
-	if (strlen(c) < 64) {
+	if (strlen(buffer) < 64) {
 		printf("Not enough letters\n");
 	} else {
-		strncpy(buf, c+(64*sizeof(char)), sizeof(buf)-1);
+		strncpy(buf, buffer+(64*sizeof(char)), sizeof(buf)-1);
 	        if (!strcmp(buf, food))
 	                winner();
 	        else
@@ -35,7 +39,7 @@ void feedMe(char *c)
         return;
 }
 
-void winner(void)
+void winner()
 {
         size_t key = sizeof(SECRET)/sizeof(SECRET[0]);
         mathIsHard(SECRET, key);

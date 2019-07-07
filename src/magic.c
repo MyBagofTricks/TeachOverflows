@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#define FLAG_SIZE 255
 
 void mathIsHard(int *secret, int key)
 {
-	char flag[255] = {0x20};
+	char flag[FLAG_SIZE];
+	memset(flag, 0, FLAG_SIZE);
         printf("\nYou win! Decrypting...\n");
         for (int i = 0; secret[i] != '\0'; i++) {
                 char ch;
